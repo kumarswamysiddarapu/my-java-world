@@ -1,0 +1,42 @@
+package entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class OneToMany {
+	static EntityManagerFactory fact= Persistence.createEntityManagerFactory("kumar");
+	public static void main(String[] args) {
+        EntityManager manager = fact.createEntityManager();
+        EntityTransaction trans = manager.getTransaction();
+        
+        Bank bank=new Bank();
+        bank.setId(101);
+        bank.setName("sbi");
+        
+        Accounts ac1=new Accounts();
+        ac1.setId(102);
+        ac1.setName("anu");
+        
+        Accounts ac2=new Accounts();
+        ac2.setId(104);
+        ac2.setName("abi");
+        
+        List<Accounts>acc=new ArrayList<Accounts>();
+        
+        acc.add(ac1);
+        acc.add(ac2);  
+        
+        trans.begin();
+        bank.setAccounts(acc);
+        manager.persist(bank);
+        manager.persist(acc);
+        
+        trans.commit();
+}
+}
+

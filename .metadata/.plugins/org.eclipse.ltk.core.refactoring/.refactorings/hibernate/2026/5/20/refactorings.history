@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;manytomany.ManYToMany&apos; to &apos;ManyToMany&apos;&#x0D;&#x0A;- Original project: &apos;hibernate&apos;&#x0D;&#x0A;- Original element: &apos;manytomany.ManYToMany&apos;&#x0D;&#x0A;- Renamed element: &apos;manytomany.ManyToMany&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ManYToMany&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;manytomany{ManYToMany.java[ManYToMany" matchStrategy="1" name="ManyToMany" qualified="false" references="true" similarDeclarations="false" stamp="1778644897750" textual="false" version="1.0"/>
+</session>

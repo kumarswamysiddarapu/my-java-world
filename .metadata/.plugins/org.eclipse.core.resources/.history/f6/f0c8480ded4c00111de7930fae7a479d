@@ -1,0 +1,195 @@
+package entity;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class OneToMany {
+
+    private static EntityManagerFactory fact = Persistence.createEntityManagerFactory("kumar");
+    private static EntityManager manager = fact.createEntityManager();
+    private static EntityTransaction trans = manager.getTransaction();
+    private static Scanner sc=new Scanner(System.in);
+    public void driver() {
+     
+     System.out.println("1 for inesrt elemnts into bank");
+     System.out.println("2 for bank all details ");
+     System.out.println("3 for upadting bank name");
+     System.out.println("4 for add an account");
+     System.out.println("5 for delete an account");
+     System.out.println("6 for delete  bank");
+     System.out.println("7 exit from the process");
+     while(true) {
+    	 System.out.println("enter your option number");
+    	 Integer choice =sc.nextInt();
+    	 switch(choice) {
+    	 case 1:
+    		 insertBank();
+    		 break;
+    	 case 2:
+    		 fetchBank();
+    		 break;
+    	 case 3:
+    		 updateBankName();
+    		 break;
+    	 case 4:
+    		 
+    	 case 5:
+    	 case 6:
+    	 case 7:
+    		 
+    	 }
+     }
+
+    }
+    public static void exit() {
+    	System.out.println("exiting from the console, cant perform any operation");
+    	System.exit(0);
+    }
+       public  void insertBank() {
+        
+        Bank bank = new Bank();
+        System.out.println("Enter bank id");
+        Integer id=sc.nextInt();
+        bank.setId(id);
+        System.out.println("Enterf bank name");
+        String Bankname=sc.next();
+        bank.setName(Bankname);
+
+        Accounts ac1 = new Accounts();
+        System.out.println("Enter Account id ");
+        Integer accId=sc.nextInt();
+        ac1.setId(accId);
+        System.out.println("Enter Account holder name");
+        String accName=sc.next();
+        ac1.setName(accName);
+
+        List<Accounts> list = new ArrayList<>();
+        list.add(ac1);
+        bank.setAccounts(list);
+        
+        trans.begin();
+        manager.persist(bank);
+        trans.commit();
+        System.out.println("Data Inserted");
+    }
+
+
+    public void fetchBank() {
+    	
+        System.out.println("Enter Bank_id");
+        Integer bankId=sc.nextInt();
+        Bank bank = manager.find(Bank.class, bankId);
+
+        if (bank != null) {
+            System.out.println("Bank Id : " + bank.getId());
+            System.out.println("Bank Name : " + bank.getName());
+            List<Accounts> accounts = bank.getAccounts();
+            for (Accounts acc : accounts) {
+                System.out.println("Account Id : " + acc.getId());
+                System.out.println("Account Name : " + acc.getName());
+            }
+
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+    public void updateBankName() {
+        System.out.println("Enter Bank_id");
+        Integer bankId=sc.nextInt();
+        Bank bank = manager.find(Bank.class, bankId);
+
+        if (bank != null) {
+            System.out.println("Enter bank name to update");
+            String name=sc.next();
+            trans.begin();
+            bank.setName(name);
+            manager.merge(bank);
+           trans.commit();
+            System.out.println("Bank Updated");
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+
+
+    public static void addAccount() {
+        System.out.println("Enter bank_id to create account");
+        Integer bankId=sc.nextInt();
+        Bank bank = manager.find(Bank.class, bankId);
+        if (bank != null) {
+            Accounts acc = new Accounts();
+            System.out.println("Enter Account id ");
+            Integer id=sc.nextInt();
+            acc.setId(id);
+            System.out.println("Enter account holder name");
+            String name=sc.next();
+            acc.setName(name);
+            bank.getAccounts().add(acc);
+            trans.begin();
+            manager.merge(bank);
+            trans.commit();
+            System.out.println("New Account Added");
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+
+    public static void deleteSingleAccount() {
+        System.out.println("Enter bankId to delete an account");
+        Integer bankId=sc.nextInt();
+        Bank bank = manager.find(Bank.class, bankId);
+
+        if (bank != null) {
+            System.out.println("enter Account Id to delete");
+            Integer accId=sc.nextInt();
+            List<Accounts> list = bank.getAccounts();
+            
+            Accounts removeAcc = null;
+
+            for (Accounts acc : list) {
+                if (acc.getId() == accId) {
+                    removeAcc = acc;
+                    break;
+                }
+            }
+
+            if (removeAcc != null) {
+                trans.begin();
+                list.remove(removeAcc);
+                manager.merge(bank);
+                trans.commit();
+                System.out.println("Account Deleted");
+            } else {
+                System.out.println("Account Not Found");
+            }
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+
+
+    public static void deleteBank() {
+        System.out.println("Enter bank id to delete");
+        Integer bankId=sc.nextInt();
+        Bank bank = manager.find(Bank.class, bankId);
+
+        if (bank != null) {
+            trans.begin();
+            manager.remove(bank);
+            trans.commit();
+            System.out.println("Bank Deleted");
+
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+}
+
+
+

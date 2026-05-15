@@ -1,0 +1,31 @@
+package manytomany;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Students {
+  @Id
+  Integer stu_id;
+  String Stu_name;
+  Integer age;
+  public Integer getStu_id() {
+	return stu_id;
+  }
+  public void setStu_id(Integer stu_id) {
+	this.stu_id = stu_id;
+  }
+  public String getStu_name() {
+	return Stu_name;
+  }
+  public void setStu_name(String stu_name) {
+	Stu_name = stu_name;
+  }
+  public Integer getAge() {
+	return age;
+  }
+  public void setAge(Integer age) {
+	this.age = age;
+  }
+  
+}

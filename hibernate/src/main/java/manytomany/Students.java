@@ -1,0 +1,42 @@
+package manytomany;
+
+import java.util.List;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Students {
+  @Id
+  private  Integer stu_id;
+  private  String Stu_name;
+  private  Integer age;
+  @ManyToMany
+  private List<Subjects> subjects;
+ 
+  public List<Subjects> getSubjects() {
+	return subjects;
+ }
+  public void setSubjects(List<Subjects> subjects) {
+	this.subjects = subjects;
+  }
+  public Integer getStu_id() {
+	return stu_id;
+  }
+  public void setStu_id(Integer stu_id) {
+	this.stu_id = stu_id;
+  }
+  public String getStu_name() {
+	return Stu_name;
+  }
+  public void setStu_name(String stu_name) {
+	Stu_name = stu_name;
+  }
+  public Integer getAge() {
+	return age;
+  }
+  public void setAge(Integer age) {
+	this.age = age;
+  }
+  
+}

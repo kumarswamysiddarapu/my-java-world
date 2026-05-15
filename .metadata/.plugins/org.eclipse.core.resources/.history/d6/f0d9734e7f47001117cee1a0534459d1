@@ -1,0 +1,15 @@
+package hibernate;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class Driver_Car {
+	public static void main(String[] args) {
+		EntityManagerFactory factory=Persistence.createEntityManagerFactory("kumar");
+		 EntityManager manager=factory.createEntityManager();
+		 EntityTransaction transaction=manager.getTransaction();
+	}
+
+}

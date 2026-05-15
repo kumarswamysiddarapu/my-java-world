@@ -1,0 +1,15 @@
+package entity;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class UpdatePrincipal {
+	EntityManagerFactory em=Persistence.createEntityManagerFactory("kumar");
+	//System.out.println(em+"connected succesfully");
+	
+	EntityManager manager=em.createEntityManager();
+	EntityTransaction transaction=manager.getTransaction();
+
+}

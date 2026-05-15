@@ -1,0 +1,49 @@
+package manytomany;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Scanner;
+//
+//import jakarta.persistence.EntityManager;
+//import jakarta.persistence.EntityManagerFactory;
+//import jakarta.persistence.EntityTransaction;
+//import jakarta.persistence.Persistence;
+//
+public class ManyToMany {
+//	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("kumar");
+//	private static EntityManager manager = factory.createEntityManager();
+//	private static EntityTransaction transaction = manager.getTransaction();
+//    private static Scanner sc=new Scanner(System.in);
+//    
+//    public static void main(String[] args) {
+//		Students students=new Students();
+//		students.setAge(23);
+//		students.setStu_id(1);
+//		students.setStu_name("kumar");
+//		
+//		Subjects subjects1=new Subjects();
+//		subjects1.setSub_id(101);
+//		subjects1.setSub_name("Mathematics");
+//		
+//		Subjects subjects2=new Subjects();
+//		subjects2.setSub_id(102);
+//		subjects2.setSub_name("chemistry");
+//		
+//		Subjects subjects3=new Subjects();
+//		subjects3.setSub_id(103);
+//		subjects3.setSub_name("Psychology");
+//		
+//	    List<Subjects> list= new ArrayList<Subjects>();
+//	    list.add(subjects1);
+//	    list.add(subjects2);
+//	    list.add(subjects3);
+//	    
+//		
+//		transaction.begin();
+//		students.setSubjects(list);
+//		manager.persist(students);
+//		manager.persist(subjects1);
+//		manager.persist(subjects2);
+//		transaction.commit();
+//	}
+}

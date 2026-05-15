@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+    version="4.0"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:javaee="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+  <display-name>Archetype Created Web Application</display-name>
+  
+  
+  <servlet>
+  <servlet-name>abc</servlet-name>
+  <servlet-class>kumarServlet.AddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>abc</servlet-name>
+  <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+  <servlet-name>bcd</servlet-name>
+  <servlet-class>kumarServlet.Servlet1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>bcd</servlet-name>
+  <url-pattern>/subtraction</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>cde</servlet-name>
+  <servlet-class>kumarServlet.ServletCalling</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>cde</servlet-name>
+  <url-pattern>/sq</url-pattern>
+  </servlet-mapping>
+  
+ 
+  
+  <servlet>
+  <servlet-name>def</servlet-name>
+  <servlet-class>kumarServlet.DemoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>def</servlet-name>
+  <url-pattern>/demo1</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>efg</servlet-name>
+  <servlet-class>kumarServlet.ServletDemoCalling</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>efg</servlet-name>
+  <url-pattern>/demo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>fgh</servlet-name>
+  <servlet-class>kumarServlet.Ser_Redirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>fgh</servlet-name>
+  <url-pattern>/ser</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>ghi</servlet-name>
+  <servlet-class>kumarServlet.Serv_Redirect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>ghi</servlet-name>
+  <url-pattern>/redirect</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+</web-app>

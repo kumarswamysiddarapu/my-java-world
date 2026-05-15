@@ -1,0 +1,49 @@
+package entity;
+
+import java.util.Scanner;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class ManyToOne {
+	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("kumar");
+	private static EntityManager manager = factory.createEntityManager();
+	private static EntityTransaction transaction = manager.getTransaction();
+    private static Scanner sc=new Scanner(System.in);
+
+    public static void main(String[] args) {
+    
+       
+    }
+    public static void insert() {
+    	 Department d = new Department();
+    	 System.out.println("enter department id");
+    	 Integer dept_id=sc.nextInt();
+         d.setDeptId(dept_id);
+         System.out.println("enter designation of the employee");
+         String designation=sc.next();
+         d.setDeptName(designation);
+
+         Employee e1 = new Employee();
+         System.out.println("enter employee id ");
+         Integer emp_id=sc.nextInt();
+         e1.setEmpId(emp_id);
+         System.out.println("enter emeployee name ");
+         String name=sc.next();
+         e1.setEmpName(name);
+         System.out.println("enter salary");
+         Integer salary=sc.nextInt();
+         e1.setSalary(salary);
+         e1.setDepartment(d);
+
+        
+
+         transaction.begin();
+         manager.persist(d);
+         manager.persist(e1);
+         transaction.commit();
+         System.out.println("Data Saved");	
+    }
+}

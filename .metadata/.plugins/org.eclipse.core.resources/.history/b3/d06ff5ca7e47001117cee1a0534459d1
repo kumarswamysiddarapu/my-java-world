@@ -1,0 +1,32 @@
+package hibernate;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Engine{
+	@Id
+	private Integer id;
+	private String type;
+	private Integer cc ;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getName() {
+		return type;
+	}
+	public void setName(String name) {
+		this.type = name;
+	}
+	public Integer getPrice () {
+		return cc;
+	}
+	public void setPrice(Integer price) {
+		this.cc= price;
+	}
+	
+
+}

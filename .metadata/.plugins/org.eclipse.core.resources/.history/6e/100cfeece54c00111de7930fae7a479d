@@ -1,0 +1,183 @@
+package entity;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class OneToMany {
+
+    private static EntityManagerFactory fact = Persistence.createEntityManagerFactory("kumar");
+    private static EntityManager manager = fact.createEntityManager();
+    private static EntityTransaction trans = manager.getTransaction();
+    private static Scanner sc=new Scanner(System.in);
+    public static void main(String[] args) {
+
+
+    }
+       public  void insertBank() {
+        
+        Bank bank = new Bank();
+        bank.setId(101);
+        bank.setName("SBI");
+
+        Accounts ac1 = new Accounts();
+        ac1.setId(1);
+        ac1.setName("Kumar");
+
+        Accounts ac2 = new Accounts();
+        ac2.setId(2);
+        ac2.setName("Swamy");
+
+        List<Accounts> list = new ArrayList<>();
+
+        list.add(ac1);
+        list.add(ac2);
+
+        bank.setAccounts(list);
+
+        trans.begin();
+        manager.persist(bank);
+        trans.commit();
+        System.out.println("Data Inserted");
+    }
+
+
+    public void fetchBank() {
+    	
+        System.out.println("Enter Bank_id");
+        Integer bankId=sc.nextInt();
+        Bank bank = manager.find(Bank.class, bankId);
+
+        if (bank != null) {
+            System.out.println("Bank Id : " + bank.getId());
+            System.out.println("Bank Name : " + bank.getName());
+            List<Accounts> accounts = bank.getAccounts();
+            for (Accounts acc : accounts) {
+                System.out.println("Account Id : " + acc.getId());
+                System.out.println("Account Name : " + acc.getName());
+            }
+
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+    public static void updateBankName(int bankId, String newName) {
+
+        Bank bank = manager.find(Bank.class, bankId);
+
+        if (bank != null) {
+
+            trans.begin();
+
+            bank.setName(newName);
+
+            manager.merge(bank);
+
+            trans.commit();
+
+            System.out.println("Bank Updated");
+
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+
+    // ================= ADD NEW ACCOUNT =================
+
+    public static void addNewAccount(int bankId) {
+
+        Bank bank = manager.find(Bank.class, bankId);
+
+        if (bank != null) {
+
+            Accounts acc = new Accounts();
+
+            acc.setId(3);
+            acc.setName("Ramesh");
+
+            bank.getAccounts().add(acc);
+
+            trans.begin();
+
+            manager.merge(bank);
+
+            trans.commit();
+
+            System.out.println("New Account Added");
+
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+
+    // ================= DELETE SINGLE ACCOUNT =================
+
+    public static void deleteSingleAccount(int bankId, int accId) {
+
+        Bank bank = manager.find(Bank.class, bankId);
+
+        if (bank != null) {
+
+            List<Accounts> list = bank.getAccounts();
+
+            Accounts removeAcc = null;
+
+            for (Accounts acc : list) {
+
+                if (acc.getId() == accId) {
+
+                    removeAcc = acc;
+                    break;
+                }
+            }
+
+            if (removeAcc != null) {
+
+                trans.begin();
+
+                list.remove(removeAcc);
+
+                manager.merge(bank);
+
+                trans.commit();
+
+                System.out.println("Account Deleted");
+
+            } else {
+                System.out.println("Account Not Found");
+            }
+
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+
+    // ================= DELETE BANK =================
+
+    public static void deleteBank(int bankId) {
+
+        Bank bank = manager.find(Bank.class, bankId);
+
+        if (bank != null) {
+
+            trans.begin();
+
+            manager.remove(bank);
+
+            trans.commit();
+
+            System.out.println("Bank Deleted");
+
+        } else {
+            System.out.println("Bank Not Found");
+        }
+    }
+}
+
+
+

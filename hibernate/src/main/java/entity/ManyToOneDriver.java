@@ -1,0 +1,22 @@
+package entity;
+
+import java.util.Scanner;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class ManyToOneDriver {
+	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("kumar");
+	private static EntityManager manager = factory.createEntityManager();
+	private static EntityTransaction transaction = manager.getTransaction();
+    private static Scanner sc=new Scanner(System.in);
+
+    public static void main(String[] args) {
+    
+      ManyToOne many=new ManyToOne();
+      many.choice();
+     
+    }
+}

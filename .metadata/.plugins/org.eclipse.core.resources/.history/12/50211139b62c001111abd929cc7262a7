@@ -1,0 +1,44 @@
+package start;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class BatchExecution {
+	private static String url="jdbc:postgresql://localhost:5432/school?user=postgres&password=123";
+	private static Connection con=null;
+	private static PreparedStatement smt=null;
+	
+	public static void main(String[] af) {
+		try {
+	         con=DriverManager.getConnection(url);
+	         String str="insert into student values(?,?,?)";
+	         smt=con.prepareStatement(str);
+	         smt.setInt(1, 104);
+	         smt.setString(2, "manav");
+	         smt.setInt(3, 23);
+	         smt.addBatch();
+	         smt.setInt(1, 106);
+	         smt.setString(2, "samay");
+	         smt.setInt(3, 23);
+	         smt.addBatch();
+	         smt.setInt(1, 107);
+	         smt.setString(2, "maha");
+	         smt.setInt(3, 23);
+	         smt.addBatch();
+	         smt.setInt(1, 108);
+	         smt.setString(2, "pavan");
+	         smt.setInt(3, 23);
+	         smt.addBatch();
+	         smt.setInt(1, 109);
+	         smt.setString(2, "dina");
+	         smt.setInt(3, 23);
+	         smt.executeBatch();
+	         con.close();
+		}catch(SQLException e) {
+			
+		}
+		
+	}
+}

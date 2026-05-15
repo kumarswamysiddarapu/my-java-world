@@ -1,0 +1,43 @@
+package entity;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class ManyToOne {
+	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("kumar");
+	private static EntityManager manager = factory.createEntityManager();
+	private static EntityTransaction transaction = manager.getTransaction();
+
+
+    public static void main(String[] args) {
+    
+        Department d = new Department();
+        d.setDeptId(102);
+        d.setDeptName("Developer");
+
+        Employee e1 = new Employee();
+        e1.setEmpId(2);
+        e1.setEmpName("suresh");
+        e1.setSalary(60000);
+        e1.setDepartment(d);
+
+        Employee e2 = new Employee();
+        e2.setEmpId(2);
+        e2.setEmpName("mahesh");
+        e2.setSalary(70000);
+        e2.setDepartment(d);
+
+        transaction.begin();
+
+        manager.persist(d);
+
+        manager.persist(e1);
+        manager.persist(e2);
+
+        transaction.commit();
+
+        System.out.println("Data Saved");
+    }
+}
